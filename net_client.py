@@ -40,8 +40,10 @@ class server:
         resposta recebida pela mesma socket.
         """
         try:
+            
             self.socket.sendall(data)
             msg = receive_all(self.socket, 1024)
+
             return msg
         except:
             print "erro no send receive"

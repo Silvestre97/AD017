@@ -11,8 +11,9 @@ def create_tcp_server_socket(address, port, queue_size):
 		sock.bind((address, port))
 		sock.listen(queue_size)
 		return sock
-	except s.error:
-		print "Erro na criacao do socket!"
+	except s.error as err:
+		print "Erro na criacao do listening socket: ", err
+		exit(1)
 
 def create_tcp_client_socket(address, port):
 	"""
@@ -22,8 +23,9 @@ def create_tcp_client_socket(address, port):
 		sock = s.socket(s.AF_INET, s.SOCK_STREAM)
 		sock.connect((address, port))
 		return sock
-	except s.error:
-		print "Erro na criacao do socket!"
+	except s.error as err:
+		print "Erro: ", err
+		exit(1)
 
 def receive_all(socket, length):
 	"""
